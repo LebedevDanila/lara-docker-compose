@@ -27,7 +27,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('default', gulp.series('browser-sync'));
 
-gulp.watch('./resources/sass/modules/**/*.scss')
+gulp.watch('./resources/sass/**/*.scss')
     .on('change', function(path, stats) {
         setTimeout(function(){
             return browserSync.reload();

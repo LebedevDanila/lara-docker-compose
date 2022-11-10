@@ -1,0 +1,67 @@
+$path: '/static/fonts/Gilroy/';
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('#{$path}Gilroy-Light.eot');
+    src:
+            url('#{$path}Gilroy-Light.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}Gilroy-Light.woff') format('woff'),
+            url('#{$path}Gilroy-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('#{$path}Gilroy-Regular.eot');
+    src:
+            url('#{$path}Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}Gilroy-Regular.woff') format('woff'),
+            url('#{$path}Gilroy-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('#{$path}Gilroy-Medium.eot');
+    src:
+            url('#{$path}Gilroy-Medium.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}Gilroy-Medium.woff') format('woff'),
+            url('#{$path}Gilroy-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('#{$path}Gilroy-SemiBold.eot');
+    src:
+            url('#{$path}Gilroy-SemiBold.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}Gilroy-SemiBold.woff') format('woff'),
+            url('#{$path}Gilroy-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('#{$path}Gilroy-Bold.eot');
+    src:
+            url('#{$path}Gilroy-Bold.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}Gilroy-Bold.woff') format('woff'),
+            url('#{$path}Gilroy-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('#{$path}Gilroy-Extra.eot');
+    src:
+            url('#{$path}Gilroy-Extra.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}Gilroy-Extra.woff') format('woff'),
+            url('#{$path}Gilroy-Extra.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}

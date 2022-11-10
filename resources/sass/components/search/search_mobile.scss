@@ -1,0 +1,52 @@
+@media (max-width: 1000px) {
+    .search {
+        padding: 8px 10px;
+
+        &-field {
+            width: 80%;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        &-input {
+            padding-left: 15px;
+            font-size: 12px;
+
+            &::placeholder {
+                font-size: 12px;
+            }
+        }
+
+        &-submit {
+            width: 20%;
+            font-size: 14px;
+        }
+
+        &-tooltip {
+            width: 125%;
+
+            &__item {
+                padding: 10px;
+
+                &__type {
+                    font-size: 12px;
+                    padding-right: 10px;
+                    margin-right: 10px;
+                    min-width: auto;
+                }
+
+                &__text {
+                    font-size: 13px;
+                    line-height: 17px;
+                }
+
+                &__btn {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+@media (max-width: 1000px) {
+    .header {
+
+        .container {
+            justify-content: space-between;
+        }
+
+        &-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #f3f3f3;
+            z-index: 99;
+        }
+
+        &-logo {
+            margin-right: 0;
+        }
+
+        &-search {
+            max-width: 256px;
+            margin-right: 0;
+
+            &__input {
+                height: 36px;
+                background: #E1E8EF;
+                color: #A1A1A1;
+
+                &::placeholder {
+                    color: #A1A1A1;
+                }
+            }
+        }
+
+        &-burgerMenu {
+            display: block;
+        }
+
+        &-bottom {
+            margin-top: 57px;
+            padding: 10px 0;
+            overflow-x: auto;
+        }
+
+        &-nav, &-languages, &-auth {
+            display: none;
+        }
+
+        &-categories {
+            &__content {
+                width: 1055px;
+                flex-wrap: nowrap;
+            }
+
+            &__elem {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 15px;
+                padding: 6px 0;
+
+                &:first-child {
+                    margin-right: 20px;
+
+                    &::after {
+                        right: -10px;
+                    }
+                }
+
+                &:not(:first-child) {
+                    margin-right: 15px;
+                }
+            }
+
+            &__scroll {
+                display: none;
+            }
+        }
+    }
+}

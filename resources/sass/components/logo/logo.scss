@@ -1,0 +1,19 @@
+.logo {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 21px;
+        display: none;
+    }
+
+    span {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 27px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+}
+
+@import 'logo_mobile';

@@ -1,0 +1,20 @@
+@media (max-width: 1000px) {
+    .categoryPage {
+        padding-bottom: 60px;
+
+        &-intro {
+            padding-top: 50px;
+            padding-bottom: 50px;
+
+            .intro {
+                &-info {
+                    text-align: left;
+                }
+
+                &-title {
+                    font-size: 26px;
+                }
+            }
+        }
+    }
+}
