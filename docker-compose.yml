@@ -14,6 +14,9 @@ services:
 
   app:
     build:
+      args:
+        user: essana3 # your username on your machine, you can get it by running echo $USER
+        uid: 1000 # your uid which you can get by running id -u
       context: .
       dockerfile: _docker/app/Dockerfile
     volumes:
