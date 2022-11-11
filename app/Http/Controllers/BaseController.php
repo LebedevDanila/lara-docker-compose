@@ -14,7 +14,7 @@ class BaseController extends Controller
     public function __construct()
     {
         $this->data = [
-            'view_file' => 'home', 
+            'view_file' => '', 
         ];
     }
 }
