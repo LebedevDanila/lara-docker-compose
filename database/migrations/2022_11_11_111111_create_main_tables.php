@@ -38,7 +38,7 @@ class CreateMainTables extends Migration
             $table->string('link', 100)->unique();
         });
 
-        Schema::create('main_wallpapers_tags_options', function (Blueprint $table) {
+        Schema::create('main_wallpapers_tags_link', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('wallpaper_id')->index();
             $table->integer('tag_id')->index();
@@ -103,6 +103,6 @@ class CreateMainTables extends Migration
         Schema::dropIfExists('main_wallpapers');
         Schema::dropIfExists('main_categories');
         Schema::dropIfExists('main_tags');
-        Schema::dropIfExists('main_wallpapers_tags_options');
+        Schema::dropIfExists('main_wallpapers_tags_link');
     }
 }

@@ -11,7 +11,7 @@ class HomeController extends BaseController
     public function index(CategoryService $category_service) {
         $this->data['view_file'] = 'home';
 
-        var_dump($category_service->get(['id' => 5]));
+        var_dump($category_service->getList(['page' => 2]));
         die();
 
         return view('index', ['data' => $this->data]);
