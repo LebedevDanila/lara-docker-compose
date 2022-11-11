@@ -1,3 +1,3 @@
 <div class="homePage">
-    This is home page
+    {{ $data['view_file'] }}
 </div>
