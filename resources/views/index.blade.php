@@ -10,9 +10,9 @@
 </head>
 <body>
 <div class="root">
-    {{ view('components.header') }}
+    {{ view('components.header', ['data' => $data]) }}
     {{ view("pages.{$data['view_file']}", ['data' => $data]) }}
-    {{ view('components.footer') }}
+    {{ view('components.footer', ['data' => $data]) }}
 </div>
 <script type="text/javascript">
     const APP = {cdn: "<?=config('constants.cdn')?>"};

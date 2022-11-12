@@ -3,23 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\WallpaperService;
 use App\Services\CategoryService;
+use App\Libs\Utils\Output;
 
 class HomeController extends BaseController
 {
 
-    public function index(CategoryService $category_service) {
+    public function index(CategoryService $category_service, WallpaperService $wallpaper_service) {
         $this->data['view_file'] = 'home';
 
-        var_dump($category_service->getList(['page' => 2]));
-        die();
+        $this->data['categories_all'] = $category_service->getList();
+
+        $wallpapers = $wallpaper_service->getList([
+            'type'     => ['name' => 'all'],
+            'page'     => 1,
+            'order_by' => 'id|desc',
+        ]);
+        if (isset($wallpapers['error'])) {
+            return abort(403, $wallpapers['error']['message']);
+        }
+        $this->data['wallpapers'] = $wallpapers;
+
+        $categories = $category_service->getList([
+            'page' => 1,
+        ]);
+        if (isset($categories['error'])) {
+            return abort(403, $categories['error']['message']);
+        }
+        $this->data['categories'] = $categories;
 
         return view('index', ['data' => $this->data]);
     }
 
     public function search(Request $request)
     {
-        # code...
+        if ( ! $request->has('query')) {
+            return Output::responseError(101);
+        }
+        $query = mb_strtolower($request->input('query'));
+
+        $categories = DB::table('main_categories')
+            ->select('id', 'name', 'link', "'category' as type")
+            ->like('name', $query)
+            ->limit(5)->get();
+
+        $tags = DB::table('main_tags')
+            ->select('id', 'name', 'link', "'tag' as type")
+            ->like('name', $query)
+            ->limit(5)->get();
+
+        $wallpapers = DB::table('main_wallpapers')
+            ->select('id', 'name', "'wallpaper' as type")
+            ->like('name', $query)
+            ->limit(5)->get();
+
+        $data = array_merge($categories, $tags, $wallpapers);
+
+        return Output::responseSuccess($data);
     }
 
 }

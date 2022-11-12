@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Helpers\GeneralHelper;
 use \App\Libs\Utils\Output;
 use DB;
 
@@ -81,9 +82,9 @@ class CategoryService
             return Output::error(101);
         }
 
-        $link = getTranslitLink($params['name']);
+        $link = GeneralHelper::getTranslitLink($params['name']);
 
-        $check = $this->db->table('main_categories')->where('link', $link)->get()->getRow();
+        $check = DB::table('main_categories')->where('link', $link)->first();
         if ( ! empty($check)) {
             return Output::error(102);
         }
@@ -93,35 +94,34 @@ class CategoryService
             'link' => $link,
         ];
         try {
-            $this->db->table('main_categories')->insert($insert);
+            $insert['id'] = DB::table('main_categories')->insertGetId($insert);
         } catch (\Exception $e) {
             return Output::error(400);
         }
-        $insert['id'] = $this->db->insertID();
 
         return Output::collection($insert);
     }
 
-    /*public function delete($params = [])
+    public function delete($params = [])
     {
         if ( ! isset($params['id'])) {
-            return $this->output->error(101);
+            return Output::error(101);
         }
 
-        $builder = $this->db->table('main_categories')->where('id', $params['id']);
+        $builder = DB::table('main_categories')->where('id', $params['id']);
 
-        $check = $builder->get()->getRow();
+        $check = $builder->first();
         if (empty($check)) {
-            return $this->output->error(404);
+            return Output::error(404);
         }
 
         try {
             $builder->delete();
         } catch (\Exception $e) {
-            return $this->output->error(400);
+            return Output::error(400);
         }
 
-        return $this->output->collection(['status' => true]);
-    }*/
+        return Output::collection(['status' => true]);
+    }
 
 }
