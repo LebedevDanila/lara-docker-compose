@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\WallpaperService;
 use App\Services\CategoryService;
 use App\Libs\Utils\Output;
+use DB;
 
 class HomeController extends BaseController
 {
@@ -44,19 +45,19 @@ class HomeController extends BaseController
         $query = mb_strtolower($request->input('query'));
 
         $categories = DB::table('main_categories')
-            ->select('id', 'name', 'link', "'category' as type")
-            ->like('name', $query)
-            ->limit(5)->get();
+            ->select('id', 'name', 'link', DB::raw("'category' as type"))
+            ->where('name', 'like', "%{$query}%")
+            ->limit(5)->get()->toArray();
 
         $tags = DB::table('main_tags')
-            ->select('id', 'name', 'link', "'tag' as type")
-            ->like('name', $query)
-            ->limit(5)->get();
+            ->select('id', 'name', 'link', DB::raw("'tag' as type"))
+            ->where('name', 'like', "%{$query}%")
+            ->limit(5)->get()->toArray();
 
         $wallpapers = DB::table('main_wallpapers')
-            ->select('id', 'name', "'wallpaper' as type")
-            ->like('name', $query)
-            ->limit(5)->get();
+            ->select('id', 'name', DB::raw("'wallpaper' as type"))
+            ->where('name', 'like', "%{$query}%")
+            ->limit(5)->get()->toArray();
 
         $data = array_merge($categories, $tags, $wallpapers);
 

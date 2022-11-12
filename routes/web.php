@@ -17,5 +17,5 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::match(['get', 'post'], '/search', [HomeController::class, 'search']);
+Route::get('/', 'HomeController@index');
+Route::match(['get', 'post'], '/search', 'HomeController@search');
