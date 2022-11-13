@@ -37,7 +37,7 @@ $(function () {
 
                     let html = '';
                     $.each(data, (key, row) => {
-                        const tag = row.link !== null ? 'a' : 'div';
+                        const tag = row.link ? 'a' : 'div';
                         html += `
                             <${tag} class="search-tooltip__item" ${tag === 'a' ? `href="/${row.type}/${row.link}"` : `data-wallpaper_id="${row.id}"`}>
                                 <div class="search-tooltip__item__info">
