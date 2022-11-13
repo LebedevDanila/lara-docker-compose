@@ -52,4 +52,5 @@
             </div>
         </div>
     </div>
+    {{ view('components.wallpaper') }}
 </footer>

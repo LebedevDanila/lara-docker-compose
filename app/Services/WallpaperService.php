@@ -98,7 +98,14 @@ class WallpaperService
                 || $order_by[0] === 'likes'
                 || $order_by[0] === 'date_create'
             ) {
-                $builder = $builder->orderBy($order_by[0], strtoupper($order_by[1]));
+                $direction = strtolower($order_by[1]);
+                if ($direction === 'asc' || $direction === 'desc') {
+                    $builder = $builder->orderBy($order_by[0], $direction);
+                } else if ($direction === 'random') {
+                    $builder = $builder->inRandomOrder();
+                } else {
+                    return Output::error(101);
+                }
             } else {
                 return Output::error(101);
             }

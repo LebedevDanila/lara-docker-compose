@@ -13,12 +13,18 @@ use DB;
 class HomeController extends BaseController
 {
 
-    public function index(CategoryService $category_service, WallpaperService $wallpaper_service) {
+    public function __construct(WallpaperService $wallpaper_service, CategoryService $category_service)
+    {
+        $this->wallpaper_service = $wallpaper_service;
+        $this->category_service  = $category_service;
+    }
+
+    public function index() {
         $this->data['view_file'] = 'home';
 
-        $this->data['categories_all'] = $category_service->getList();
+        $this->data['categories_all'] = $this->category_service->getList();
 
-        $wallpapers = $wallpaper_service->getList([
+        $wallpapers = $this->wallpaper_service->getList([
             'type'     => ['name' => 'all'],
             'page'     => 1,
             'order_by' => 'id|desc',
@@ -28,7 +34,7 @@ class HomeController extends BaseController
         }
         $this->data['wallpapers'] = $wallpapers;
 
-        $categories = $category_service->getList([
+        $categories = $this->category_service->getList([
             'page' => 1,
         ]);
         if (isset($categories['error'])) {

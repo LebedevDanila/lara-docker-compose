@@ -25,3 +25,10 @@ Route::get('/parser/{tag}/{max}', 'HomeController@parser');
 Route::match(['get', 'post'], '/wallpaper/get', 'WallpaperController@get');
 Route::match(['get', 'post'], '/wallpaper/getList', 'WallpaperController@getList');
 Route::match(['get', 'post'], '/wallpaper/download', 'WallpaperController@download');
+
+/* Categories */
+Route::match(['get', 'post'], '/category/getList', 'CategoryController@getList');
+Route::get('/category/{link}', 'CategoryController@index');
+
+/* Tags */
+Route::get('/tag/{link}', 'TagController@index');
