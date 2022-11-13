@@ -54,6 +54,11 @@ class WallpaperController extends BaseController
         }
         $wallpaper['similars'] = $similars;
 
+        $this->wallpaper_service->updateStatistics([
+            'name' => 'views',
+            'id'   => $wallpaper['id'],
+        ]);
+
         return Output::responseSuccess($wallpaper);
     }
 
@@ -104,8 +109,9 @@ class WallpaperController extends BaseController
             return Output::responseError($wallpaper['error']['code']);
         }
 
-        $this->wallpaper_service->download([
-            'id' => $id
+        $this->wallpaper_service->updateStatistics([
+            'name' => 'downloads',
+            'id'   => $id,
         ]);
 
         $explode_url = explode('.', $wallpaper['url']);

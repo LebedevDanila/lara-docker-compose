@@ -192,11 +192,19 @@ class WallpaperService
         return Output::collection($insert);
     }
 
-    public function download($params = '')
+    public function updateStatistics($params = [])
     {
+        if ( ! isset($params['name'])
+            && $params['name'] !== 'downloads'
+            && $params['name'] !== 'views'
+            && $params['name'] !== 'likes'
+        ) {
+            return Output::error(101);
+        }
+
         DB::table('main_wallpapers')
             ->where('id', $params['id'])
-            ->update(['downloads' => DB::raw('downloads+1')]);
+            ->update([$params['name'] => DB::raw("{$params['name']}+1")]);
 
         return Output::collection(['status' => true]);
     }

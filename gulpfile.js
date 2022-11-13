@@ -19,7 +19,7 @@ let autoprefixBrowsers = ['> 1%', 'last 15 versions', 'firefox >= 4', 'safari 7'
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy: 'http://127.0.0.1:8876/',
+		proxy: 'http://127.0.0.1:8080/',
         notify: false,
         open: false,
 	});
