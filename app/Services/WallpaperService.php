@@ -196,8 +196,7 @@ class WallpaperService
     {
         DB::table('main_wallpapers')
             ->where('id', $params['id'])
-            ->set('downloads', DB::raw('downloads+1'))
-            ->update();
+            ->update(['downloads' => DB::raw('downloads+1')]);
 
         return Output::collection(['status' => true]);
     }
