@@ -64,12 +64,13 @@ class Output
 
     private static function out($data = [], $is_json = false)
     {
-        $data = json_encode($data);
-        if ( ! $is_json) {
-            $data = json_decode($data, true);
+        $return = json_encode($data);
+
+        if (!$is_json) {
+            $return = json_decode($return, true);
         }
 
-        return $data;
+        return $return;
     }
 
 }

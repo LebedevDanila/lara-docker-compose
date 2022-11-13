@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Libs\Utils\Cdn;
 use App\Libs\Utils\Output;
+use App\Helpers\GeneralHelper;
 use DB;
 
 class WallpaperService
@@ -26,7 +27,7 @@ class WallpaperService
             ->leftJoin('main_categories', 'main_categories.id', '=', 'main_wallpapers.category_id')
             ->first();
         if (empty($wallpaper)) {
-            return Output::error(102);
+            return Output::error(404);
         }
 
         return Output::collection($wallpaper);
@@ -154,7 +155,7 @@ class WallpaperService
             return Output::error(11);
         }
 
-        $path = config('constants.cdn_path_wallpapers') . generateHash(20);
+        $path = config('constants.cdn.path.wallpapers') . GeneralHelper::generateHash(20);
         if (is_string($params['content'])) {
             $explode = explode('.', $params['content']);
             $format  = '.' . $explode[count($explode)-1];
@@ -188,7 +189,7 @@ class WallpaperService
     {
         DB::table('main_wallpapers')
             ->where('id', $params['id'])
-            ->set('downloads', 'downloads+1')
+            ->set('downloads', DB::raw('downloads+1'))
             ->update();
 
         return Output::collection(['status' => true]);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\WallpaperService;
 use App\Services\CategoryService;
+use App\Services\TagService;
+use App\Libs\Parsers\WallpaperMobOrgParser;
 use App\Libs\Utils\Output;
 use DB;
 
@@ -62,6 +64,23 @@ class HomeController extends BaseController
         $data = array_merge($categories, $tags, $wallpapers);
 
         return Output::responseSuccess($data);
+    }
+
+    public function parser($tag = '', $max = 10)
+    {
+        $data = (new WallpaperMobOrgParser(['max' => $max]))->run($tag);
+        foreach ($data as $wallpaper_row) {
+            $params = [
+                'category_id' => mt_rand(1, 11),
+                'name'        => implode(', ', $wallpaper_row['tags']),
+                'content'     => $wallpaper_row['url'],
+            ];
+            $wallpaper = (new WallpaperService())->create($params);
+
+            foreach ($wallpaper_row['tags'] as $tag_row) {
+                $tags = (new TagService())->create(['name' => $tag_row, 'wallpaper_id' => $wallpaper['id']]);
+            }
+        }
     }
 
 }

@@ -11,11 +11,11 @@
 <body>
 <div class="root">
     {{ view('components.header', ['data' => $data]) }}
-    {{ view("pages.{$data['view_file']}", ['data' => $data]) }}
+    {{ view("pages.{$data['view_file']}", $data) }}
     {{ view('components.footer', ['data' => $data]) }}
 </div>
 <script type="text/javascript">
-    const APP = {cdn: "<?=config('constants.cdn')?>"};
+    const APP = {cdn: "<?=config('constants.cdn.url')?>"};
 </script>
 <script type="text/javascript" src="/static/js/libs/jquery.js"></script>
 <script type="text/javascript" src="/static/js/index.js"></script>

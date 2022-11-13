@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 
-/*Artisan::call('view:clear');*/
+Artisan::call('view:clear');
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +19,9 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', 'HomeController@index');
 Route::match(['get', 'post'], '/search', 'HomeController@search');
+Route::get('/parser/{tag}/{max}', 'HomeController@parser');
+
+/* Wallpapers */
+Route::match(['get', 'post'], '/wallpaper/get', 'WallpaperController@get');
+Route::match(['get', 'post'], '/wallpaper/getList', 'WallpaperController@getList');
+Route::match(['get', 'post'], '/wallpaper/download', 'WallpaperController@download');
